@@ -2,14 +2,16 @@ package domain.services;
 
 import dagger.Module;
 import dagger.Provides;
-import domain.repository.Api;
+import domain.api.Api;
+import domain.api.ApiModule;
 
-@Module
+@Module(includes = ApiModule.class)
 public class ServiceModule {
     @Provides Persistence providePersistence(){
         return new Persistence();
     }
-    @Provides Api provideApi(){
-        return new Api();
+
+    @Provides Session provideSession(Api api, Persistence persistence) {
+        return new Session(api, persistence);
     }
 }

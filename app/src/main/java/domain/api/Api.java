@@ -1,19 +1,18 @@
-package domain.repository;
+package domain.api;
 
 import com.google.gson.JsonObject;
 
+import javax.inject.Inject;
+
 import domain.models.User;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class Api {
     private final Endpoints mEndpoints;
 
-    public Api() {
-        mEndpoints = new RestAdapter.Builder()
-                .setEndpoint(Config.URL_BASE)
-                .build().create(Endpoints.class);
+    @Inject public Api(Endpoints endpoints) {
+        mEndpoints = endpoints;
     }
 
     public void login(String username, String password, final Callback<JsonObject> callback) {

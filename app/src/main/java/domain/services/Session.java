@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import javax.inject.Inject;
 
 import domain.models.User;
-import domain.repository.Api;
+import domain.api.Api;
 import edu.victoralbertos.restapiparseauthandroid.R;
 
 public class Session {

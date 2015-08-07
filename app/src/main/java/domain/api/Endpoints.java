@@ -1,4 +1,4 @@
-package domain.repository;
+package domain.api;
 
 import com.google.gson.JsonObject;
 
@@ -13,7 +13,7 @@ import retrofit.http.PUT;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
-interface Endpoints {
+public interface Endpoints {
     @Headers({Config.HEADER_APP_ID, Config.HEADER_REST_API_KEY})
     @GET("/login")
     void login(@Query("username") String username, @Query("password") String password, Callback<JsonObject> response);

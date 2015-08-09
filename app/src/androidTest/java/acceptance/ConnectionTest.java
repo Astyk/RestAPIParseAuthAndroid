@@ -22,7 +22,7 @@ import ui.activities.ProfileActivity;
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ConnectionTest extends ActivityInstrumentationTestCase2 {
-    private final static int WAIT_SERVER_RESPONSE = 1000;
+    private final static int WAIT_SERVER_RESPONSE = 1500;
     private Solo mSolo;
     private final UserMock mUserMock;
 

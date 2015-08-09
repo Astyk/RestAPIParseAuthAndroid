@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
-import domain.services.DaggerServiceComponent;
-import domain.services.ServiceComponent;
+import domain.services.DaggerSessionComponent;
+import domain.services.SessionComponent;
 import domain.services.Session;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -18,7 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void setUpGraph() {
-        ServiceComponent component = DaggerServiceComponent.create();
+        SessionComponent component = DaggerSessionComponent.create();
         component.injectClient(this);
     }
 }

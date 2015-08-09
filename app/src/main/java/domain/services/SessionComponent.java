@@ -7,8 +7,8 @@ import ui.activities.BaseActivity;
 import ui.fragments.BaseFragment;
 
 @Singleton
-@Component(modules = {ServiceModule.class})
-public interface ServiceComponent {
+@Component(modules = {SessionModule.class})
+public interface SessionComponent {
     Session provideSession();
     void injectClient(BaseActivity baseActivity);
     void injectClient(BaseFragment baseFragment);

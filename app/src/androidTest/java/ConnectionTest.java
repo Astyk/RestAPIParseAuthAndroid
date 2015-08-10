@@ -1,5 +1,3 @@
-package acceptance;
-
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
@@ -19,7 +17,7 @@ import ui.activities.ProfileActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class ConnectionTest extends ActivityInstrumentationTestCase2 {
-    private final static int WAIT_SERVER_RESPONSE = 1500;
+    private final static int WAIT_SERVER_RESPONSE = 2500;
     private Solo mSolo;
     private final UserMock mUserMock;
 

@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import javax.inject.Inject;
 
 import domain.services.DaggerSessionComponent;
-import domain.services.SessionComponent;
 import domain.services.Session;
+import domain.services.SessionComponent;
 
 public abstract class BaseFragment extends Fragment {
     @Inject Session mSession;

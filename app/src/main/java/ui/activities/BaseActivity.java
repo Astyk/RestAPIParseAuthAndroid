@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 
 import domain.services.DaggerSessionComponent;
-import domain.services.SessionComponent;
 import domain.services.Session;
+import domain.services.SessionComponent;
 
 public abstract class BaseActivity extends AppCompatActivity {
     @Inject Session mSession;

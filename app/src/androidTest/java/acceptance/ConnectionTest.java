@@ -9,10 +9,8 @@ import android.widget.EditText;
 import com.robotium.solo.Solo;
 
 import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 
 import edu.victoralbertos.restapiparseauthandroid.R;
 import ui.activities.ConnectActivity;
@@ -20,7 +18,6 @@ import ui.activities.LaunchActivity;
 import ui.activities.ProfileActivity;
 
 @RunWith(AndroidJUnit4.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ConnectionTest extends ActivityInstrumentationTestCase2 {
     private final static int WAIT_SERVER_RESPONSE = 1500;
     private Solo mSolo;

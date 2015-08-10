@@ -48,19 +48,6 @@ public class Session {
         });
     }
 
-    private void handleSuccessConnection(Context context, JsonObject jsonObject, Callback<String> callback) {
-        if (!jsonObject.has("sessionToken")) {
-            callback.response(false, context.getString(R.string.failure));
-        }
-
-        String token = jsonObject.get("sessionToken").getAsString();
-        String objectId = jsonObject.get("objectId").getAsString();
-        mPersistence.saveCredentials(context, objectId, token);
-
-        String successMessage = context.getString(R.string.success);
-        callback.response(true, successMessage);
-    }
-
     public void update(final Context context, String email, String username, String phone, final Callback<String> callback) {
         String token = mPersistence.retrieveToken(context);
         String objectId = mPersistence.retrieveObjectId(context);
@@ -78,18 +65,6 @@ public class Session {
                 handleCommonFailure(context, error, callback);
             }
         });
-    }
-
-    private void handleCommonFailure(Context context, RetrofitError error, Callback<String> callback) {
-        JsonObject jsonObject = (JsonObject) error.getBodyAs(JsonObject.class);
-
-        if (jsonObject != null && jsonObject.has("error")) {
-            String message = jsonObject.get("error").getAsString();
-            callback.response(false, message);
-            return;
-        }
-
-        callback.response(false, context.getString(R.string.failure));
     }
 
     @Nullable public void currentSession(final Context context, final Callback<User> callback) {
@@ -114,6 +89,36 @@ public class Session {
 
     public void destroy(Context context) {
         mPersistence.removeCredentials(context);
+    }
+
+    private void handleSuccessConnection(Context context, JsonObject jsonObject, Callback<String> callback) {
+        if (!jsonObject.has("sessionToken")) {
+            callback.response(false, context.getString(R.string.failure));
+        }
+
+        String token = jsonObject.get("sessionToken").getAsString();
+        String objectId = jsonObject.get("objectId").getAsString();
+        mPersistence.saveCredentials(context, objectId, token);
+
+        String successMessage = context.getString(R.string.success);
+        callback.response(true, successMessage);
+    }
+
+    private void handleCommonFailure(Context context, RetrofitError error, Callback<String> callback) {
+        if (error.getBodyAs(JsonObject.class) == null) {
+            callback.response(false, context.getString(R.string.failure));
+            return;
+        }
+
+        JsonObject jsonObject = (JsonObject) error.getBodyAs(JsonObject.class);
+
+        if (jsonObject != null && jsonObject.has("error")) {
+            String message = jsonObject.get("error").getAsString();
+            callback.response(false, message);
+            return;
+        }
+
+        callback.response(false, context.getString(R.string.failure));
     }
 
     public interface Callback<T> {
